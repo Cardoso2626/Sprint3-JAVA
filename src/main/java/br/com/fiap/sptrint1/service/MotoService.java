@@ -12,6 +12,9 @@ import br.com.fiap.sptrint1.repository.PatioRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
@@ -30,11 +33,29 @@ public class MotoService {
     }
 
 
+    public Page<MotoResponseDTO> listarPorPlacaComPaginacao(String placa, int page, int size, String sortField, String sortOrder) {
+        Sort.Direction direction = sortOrder.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        PageRequest pageRequest = PageRequest.of(page, size, direction, sortField);
+
+        Page<Moto> motosPage = motoRepository.findByPlaca(placa, pageRequest);
+
+        // Convertendo o resultado em MotoResponseDTO
+        return motosPage.map(moto -> new MotoResponseDTO(
+                moto.getId(),
+                moto.getModelo(),
+                moto.getCor(),
+                moto.getPlaca(),
+                moto.getDataFabricacao(),
+                moto.getPatio() != null ? moto.getPatio().getId() : null,
+                moto.getChaveiro() != null ? moto.getChaveiro().getId() : null
+        ));
+    }
     //Listando as motos
     @Cacheable(value = "motos")
     public List<Moto> listar(){
         return motoRepository.findAll();
-    } // mudar
+    }
 
     //Criar
     @CachePut(value = "motos", key = "#result.id")

@@ -7,6 +7,7 @@ import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.service.MotoService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -57,5 +58,14 @@ public class MotoController {
     public ResponseEntity<MotoResponseDTO> pesquisarPorPlaca(@PathVariable String placa) {
         MotoResponseDTO moto = motoService.acharPorPlaca(placa);
         return ResponseEntity.ok(moto);
+    }
+    @GetMapping("/por-placa")
+    public Page<MotoResponseDTO> listarMotosPorPlaca(
+            @RequestParam String placa,
+            @RequestParam int page,
+            @RequestParam int size,
+            @RequestParam String sortField,
+            @RequestParam String sortOrder) {
+        return motoService.listarPorPlacaComPaginacao(placa, page, size, sortField, sortOrder);
     }
 }

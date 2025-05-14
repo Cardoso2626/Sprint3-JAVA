@@ -10,6 +10,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +27,16 @@ public class ChaveiroService {
     }
 
     // Listando os chaveiros
+
+    public Page<ChaveiroResponseDTO> buscarPorPlaca(String placa, Pageable pageable) {
+        Page<Chaveiro> chaveiros = chaveiroRepository.findByMotoPlacaContainingIgnoreCase(placa, pageable);
+
+        return chaveiros.map(chaveiro -> new ChaveiroResponseDTO(
+                chaveiro.getId(),
+                chaveiro.getDispositivo(),
+                chaveiro.getMoto() != null ? chaveiro.getMoto().getId() : null
+        ));
+    }
 
     @Cacheable(value = "chaveiros")
     public List<Chaveiro> pegarTodos() {

@@ -3,6 +3,7 @@ package br.com.fiap.sptrint1.service;
 import br.com.fiap.sptrint1.dto.MotoRequest;
 import br.com.fiap.sptrint1.dto.MotoRequestDTO;
 import br.com.fiap.sptrint1.dto.MotoResponseDTO;
+import br.com.fiap.sptrint1.mapper.MotoMapper;
 import br.com.fiap.sptrint1.model.Chaveiro;
 import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.model.Patio;
@@ -14,6 +15,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -33,23 +35,9 @@ public class MotoService {
     }
 
 
-    public Page<MotoResponseDTO> listarPorPlacaComPaginacao(String placa, int page, int size, String sortField, String sortOrder) {
-        Sort.Direction direction = sortOrder.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
-
-        PageRequest pageRequest = PageRequest.of(page, size, direction, sortField);
-
-        Page<Moto> motosPage = motoRepository.findByPlaca(placa, pageRequest);
-
-        // Convertendo o resultado em MotoResponseDTO
-        return motosPage.map(moto -> new MotoResponseDTO(
-                moto.getId(),
-                moto.getModelo(),
-                moto.getCor(),
-                moto.getPlaca(),
-                moto.getDataFabricacao(),
-                moto.getPatio() != null ? moto.getPatio().getId() : null,
-                moto.getChaveiro() != null ? moto.getChaveiro().getId() : null
-        ));
+    public Page<MotoResponseDTO> buscarPorPlacaComDTO(String placa, Pageable pageable) {
+        return motoRepository.findByPlaca(placa, pageable)
+                .map(MotoMapper::toResponseDTO);
     }
     //Listando as motos
     @Cacheable(value = "motos")

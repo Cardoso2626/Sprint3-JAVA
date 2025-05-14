@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface ChaveiroRepository extends JpaRepository<Chaveiro, Long> {
     Optional<Chaveiro> findByDispositivo (String dispositivo);
-    Page<Chaveiro> findByMotoPlacaContainingIgnoreCase(String placa, Pageable pageable);
+    Page<Chaveiro> findByDispositivoContainingIgnoreCase(String dispositivo, Pageable pageable);
 }

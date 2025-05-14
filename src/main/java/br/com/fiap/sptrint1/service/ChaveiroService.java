@@ -2,6 +2,7 @@ package br.com.fiap.sptrint1.service;
 
 import br.com.fiap.sptrint1.dto.ChaveiroRequest;
 import br.com.fiap.sptrint1.dto.ChaveiroResponseDTO;
+import br.com.fiap.sptrint1.mapper.ChaveiroMapper;
 import br.com.fiap.sptrint1.model.Chaveiro;
 import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.repository.ChaveiroRepository;
@@ -28,14 +29,9 @@ public class ChaveiroService {
 
     // Listando os chaveiros
 
-    public Page<ChaveiroResponseDTO> buscarPorPlaca(String placa, Pageable pageable) {
-        Page<Chaveiro> chaveiros = chaveiroRepository.findByMotoPlacaContainingIgnoreCase(placa, pageable);
-
-        return chaveiros.map(chaveiro -> new ChaveiroResponseDTO(
-                chaveiro.getId(),
-                chaveiro.getDispositivo(),
-                chaveiro.getMoto() != null ? chaveiro.getMoto().getId() : null
-        ));
+    public Page<ChaveiroResponseDTO> buscarPorDispositivo(String dispositivo, Pageable pageable) {
+        return chaveiroRepository.findByDispositivoContainingIgnoreCase(dispositivo, pageable)
+                .map(ChaveiroMapper::toResponseDTO);
     }
 
     @Cacheable(value = "chaveiros")

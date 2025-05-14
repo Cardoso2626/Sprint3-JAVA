@@ -3,11 +3,14 @@ package br.com.fiap.sptrint1.controller;
 import br.com.fiap.sptrint1.dto.MotoRequest;
 import br.com.fiap.sptrint1.dto.MotoRequestDTO;
 import br.com.fiap.sptrint1.dto.MotoResponseDTO;
+import br.com.fiap.sptrint1.mapper.MotoMapper;
 import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.service.MotoService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -60,12 +63,11 @@ public class MotoController {
         return ResponseEntity.ok(moto);
     }
     @GetMapping("/por-placa")
-    public Page<MotoResponseDTO> listarMotosPorPlaca(
+    public ResponseEntity<Page<MotoResponseDTO>> buscarPorPlaca(
             @RequestParam String placa,
-            @RequestParam int page,
-            @RequestParam int size,
-            @RequestParam String sortField,
-            @RequestParam String sortOrder) {
-        return motoService.listarPorPlacaComPaginacao(placa, page, size, sortField, sortOrder);
+            @PageableDefault(size = 10, sort = "modelo") Pageable pageable
+    ) {
+        Page<MotoResponseDTO> pagina = motoService.buscarPorPlacaComDTO(placa, pageable);
+        return ResponseEntity.ok(pagina);
     }
 }

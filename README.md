@@ -12,6 +12,9 @@ Este projeto tem como objetivo o desenvolvimento de uma API RESTful em **Java co
 
 #Como rodar o projeto
 
+(CRIE PRIMEIRAMENTE O OBJETO DA CLASSE MOTO, POIS NÃO É NECESSÁRIO UMA PASSAGEM DE ID PARA OS RELACIONAMENTOS QUE ESTA CLASSE OBTEM)
+(LEMBRANDO QUE PARA CADA CLASSE, NÃO É NECESSÁRIO PASSAR SEU ID, APENAS NOS RELACIONAMENTOS. O ID DE CADA CLASSE É CRIADO AUTOMATICAMENTE)
+
  - Para rodar o projeto, é necessário, após a clonagem ou upload do zip (necessário extrair pasta do repositório), abrir as camadas src - main - java - br.com.fiap.sprint1 (pacote), após isso é necessário ir na classe Sprint1JavaApplication e clicar no símbolo de run (play) no canto superior da página. 
   - Após isso, você deve utilizar algum tipo de programa para testar as requisições, em nosso projeto, usamos o POSTMAN. Ao entrar no postman, faça login e clique em fazer uma nova requisição ou "new request".
   - É necessário colocar o caminho do localhost da API, que seria http://localhost:8080/(entidade da requisição)

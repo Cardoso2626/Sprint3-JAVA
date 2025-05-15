@@ -20,6 +20,9 @@ Este projeto tem como objetivo o desenvolvimento de uma API RESTful em **Java co
  - PUT: parecido com o post, mas você mantém todos os atributos e muda o valor do aributo que deseja, esse request vai se basear na classeRequest
   - GET: tem algumas formas de fazer, você pode puxar por id, http://localhost:8080/(entidade da requisição)/(idDaEntidade), ou por placa (no caso da moto): (entidade da requisição)/(PlacaDaEntidade)
   - DELETE: você pode deletar suas etidade pelo id, e ficaria assim  http://localhost:8080/(entidade da requisição)/(idDaEntidade),
+  - Além disso tudo você pode puxar por páginas (get), seguindo o caminho que também está no controller, temos 2 tipos, o pageable de Moto e de Chaveiro.
+       - Ex de Chaveiro: http://localhost:8080/chaveiro/por-dispositivo?dispositivo=tag123&page=0&size=5&sort=dispositivo,asc
+       - Ex de Moto: http://localhost:8080/moto/por-placa?placa=ABC1234&page=0&size=5&sort=modelo,asc    
 ---
 
 ## 👨‍💻 Integrantes

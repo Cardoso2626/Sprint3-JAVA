@@ -30,11 +30,6 @@ public class MotoController {
         this.motoService = motoService;
     }
 
-    @GetMapping
-    public List<Moto> listarTodos (){
-        return motoService.listar();
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<MotoResponseDTO> pegarPorId(@PathVariable Long id) {
         MotoResponseDTO dto = motoService.acharPorId(id);
@@ -62,6 +57,8 @@ public class MotoController {
         MotoResponseDTO moto = motoService.acharPorPlaca(placa);
         return ResponseEntity.ok(moto);
     }
+
+    //Pageable
     @GetMapping("/por-placa")
     public ResponseEntity<Page<MotoResponseDTO>> buscarPorPlaca(
             @RequestParam String placa,

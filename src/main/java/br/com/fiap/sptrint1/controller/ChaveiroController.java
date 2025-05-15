@@ -25,12 +25,6 @@ public class ChaveiroController {
         this.chaveiroService = chaveiroService;
     }
 
-
-    @GetMapping
-    public List<Chaveiro> listarTodos() {
-        return chaveiroService.pegarTodos();
-    }
-
     @GetMapping("/por-dispositivo")
     public ResponseEntity<Page<ChaveiroResponseDTO>> buscarPorDispositivo(
             @RequestParam String dispositivo,
@@ -58,12 +52,13 @@ public class ChaveiroController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         chaveiroService.delete(id);
     }
 
+
+    //Pageable
     @PutMapping("/{id}")
     public ResponseEntity<ChaveiroResponseDTO> atualizar(
             @PathVariable Long id,

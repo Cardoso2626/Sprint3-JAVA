@@ -20,12 +20,6 @@ public class PatioController {
         this.patioService = patioService;
     }
 
-
-    @GetMapping
-    public List<Patio> listarTodos() {
-        return patioService.getAll();
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<PatioResponseDTO> buscarPorId(@PathVariable Long id) {
         PatioResponseDTO response = patioService.buscarPorId(id);

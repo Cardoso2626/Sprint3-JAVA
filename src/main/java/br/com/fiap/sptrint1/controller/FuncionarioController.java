@@ -21,11 +21,6 @@ public class FuncionarioController {
         this.funcionarioService = funcionarioService;
     }
 
-    @GetMapping
-    public List<Funcionario> listarTodos(){
-        return  funcionarioService.pegarTodos();
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<FuncionarioResponseDTO> pegarPorId(@PathVariable Long id) {
         FuncionarioResponseDTO funcionario = funcionarioService.pegarPorId(id);

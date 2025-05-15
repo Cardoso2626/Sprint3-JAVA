@@ -29,11 +29,6 @@ public class PatioService {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-    // Listando os patios
-    @Cacheable(value = "patios")
-    public List<Patio> getAll() {
-        return patioRepository.findAll();
-    }
 
     // Criar
     @CachePut(value = "patio", key = "#result.id")

@@ -25,12 +25,6 @@ public class FuncionarioService {
         this.patioRepository = patioRepository;
     }
 
-    // Listando os funcionários
-    @Cacheable(value = "funcionarios")
-    public List<Funcionario> pegarTodos() {
-        return funcionarioRepository.findAll();
-    }
-
     // Criar
     @CachePut(value = "funcionario", key = "#result.id")
     public FuncionarioResponseDTO save(FuncionarioRequestDTO funcionarioDTO) {

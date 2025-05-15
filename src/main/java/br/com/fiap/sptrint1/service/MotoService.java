@@ -34,15 +34,10 @@ public class MotoService {
         this.chaveiroRepository = chaveiroRepository;
     }
 
-
+    // Listando motos por pageable
     public Page<MotoResponseDTO> buscarPorPlacaComDTO(String placa, Pageable pageable) {
         return motoRepository.findByPlaca(placa, pageable)
                 .map(MotoMapper::toResponseDTO);
-    }
-    //Listando as motos
-    @Cacheable(value = "motos")
-    public List<Moto> listar(){
-        return motoRepository.findAll();
     }
 
     //Criar

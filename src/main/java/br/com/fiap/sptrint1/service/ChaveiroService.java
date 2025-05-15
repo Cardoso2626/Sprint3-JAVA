@@ -27,16 +27,11 @@ public class ChaveiroService {
         this.chaveiroRepository = chaveiroRepository;
     }
 
-    // Listando os chaveiros
+    // Listando os chaveiros por pageable
 
     public Page<ChaveiroResponseDTO> buscarPorDispositivo(String dispositivo, Pageable pageable) {
         return chaveiroRepository.findByDispositivoContainingIgnoreCase(dispositivo, pageable)
                 .map(ChaveiroMapper::toResponseDTO);
-    }
-
-    @Cacheable(value = "chaveiros")
-    public List<Chaveiro> pegarTodos() {
-        return chaveiroRepository.findAll();
     }
 
     // Criar
@@ -78,6 +73,8 @@ public class ChaveiroService {
                 chaveiro.getMoto() != null  ? chaveiro.getMoto().getId() : null
         );
     }
+
+    // Achar chaveiro por dispositivo
     @Cacheable(value = "chaveirosPorDispositivo", key = "#dispositivo")
     public ChaveiroResponseDTO acharPorDispositivo(String dispositivo) {
         Chaveiro chaveiro = chaveiroRepository.findByDispositivo(dispositivo).orElseThrow(() -> new RuntimeException("Não foi possivel identificar o dispositivo do chaveiro!"));

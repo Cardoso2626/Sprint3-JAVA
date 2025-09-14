@@ -3,7 +3,7 @@ package br.com.fiap.sptrint1.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.websocket.OnError;
-import org.springframework.boot.SpringApplicationRunListener;
+
 
 import java.time.LocalDate;
 

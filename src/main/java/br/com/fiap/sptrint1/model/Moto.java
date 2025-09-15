@@ -20,7 +20,6 @@ public class Moto {
     @ManyToOne
     @JoinColumn(name = "patio_id")
     private Patio patio;
-
     @OneToOne
     @JoinColumn(name = "chaveiro_id")
     private Chaveiro chaveiro;

@@ -13,16 +13,20 @@ public class Localizacao {
     private int numero;
     private String cidade;
     private String estado;
+    @OneToOne
+    @JoinColumn(name = "patio_id")
+    private Patio patio;
 
-    private Localizacao(){
+    public Localizacao(){
 
     }
-    private Localizacao(Long id, String rua, int numero, String cidade, String estado) {
+    public Localizacao(Long id, String rua, int numero, String cidade, String estado, Patio patio) {
         this.id = id;
         this.rua = rua;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
+        this.patio = patio;
     }
 
     public Long getId() {
@@ -63,5 +67,13 @@ public class Localizacao {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Patio getPatio() {
+        return patio;
+    }
+
+    public void setPatio(Patio patio) {
+        this.patio = patio;
     }
 }

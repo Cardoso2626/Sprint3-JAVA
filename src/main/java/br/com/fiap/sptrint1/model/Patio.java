@@ -21,11 +21,16 @@ public class Patio {
     )
     private List<Funcionario> funcionarios;
 
+    @OneToOne(mappedBy = "patio", cascade = CascadeType.ALL)
+    @MapsId
+    private Localizacao localizacao;
 
-    public Patio(Long id, List<Moto> motos, List<Funcionario> funcionarios) {
+
+    public Patio(Long id, List<Moto> motos, List<Funcionario> funcionarios, Localizacao localizacao) {
         this.id = id;
         this.motos = motos;
         this.funcionarios = funcionarios;
+        this.localizacao = localizacao;
     }
 
     public Patio() {
@@ -57,7 +62,11 @@ public class Patio {
         this.id = id;
     }
 
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
 
-
-
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
+    }
 }

@@ -3,6 +3,7 @@ package br.com.fiap.sptrint1.controller;
 import br.com.fiap.sptrint1.dto.LocalizacaoRequestDTO;
 import br.com.fiap.sptrint1.dto.LocalizacaoResponse;
 import br.com.fiap.sptrint1.dto.MotoResponseDTO;
+import br.com.fiap.sptrint1.model.Localizacao;
 import br.com.fiap.sptrint1.service.LocalizacaoService;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,9 @@ public class LocalizaoController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-
-
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<LocalizacaoResponse> atualizar (@PathVariable Long id, @RequestBody LocalizacaoRequestDTO localizacaDTO){
+        LocalizacaoResponse loc = localizacaoService.atualizar(localizacaDTO, id);
+        return ResponseEntity.ok(loc);
+    }
 }

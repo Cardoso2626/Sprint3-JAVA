@@ -35,4 +35,20 @@ public class LocalizacaoService {
 
     }
 
+    public void deletar (Long id){
+        localizacaoRepository.deleteById(id);
+    }
+
+    public LocalizacaoResponse acharPorRua(String rua) {
+        Localizacao loc = localizacaoRepository.findByRua(rua).orElseThrow(() -> new RuntimeException("Não foi possível encontrar a rua"));
+        return  new LocalizacaoResponse(
+                loc.getId(),
+                loc.getRua(),
+                loc.getNumero(),
+                loc.getCidade(),
+                loc.getEstado(),
+                loc.getPatio() != null ? loc.getPatio().getId() : null
+        );
+    }
+
 }

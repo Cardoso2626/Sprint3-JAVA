@@ -7,11 +7,10 @@ import br.com.fiap.sptrint1.service.LocalizacaoService;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/localizacao")
 public class LocalizaoController {
     private LocalizacaoService localizacaoService;
     public LocalizaoController(LocalizacaoService localizacaoService){
@@ -23,4 +22,18 @@ public class LocalizaoController {
         LocalizacaoResponse response = localizacaoService.criar(localizacaoRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @DeleteMapping("/{id}")
+    public void deletar(@PathVariable Long id){
+        localizacaoService.deletar(id);
+    }
+
+    @GetMapping("/porRua/{rua}")
+    public ResponseEntity<LocalizacaoResponse> buscarPorRua(@PathVariable String rua){
+        LocalizacaoResponse response = localizacaoService.acharPorRua(rua);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+
+
 }

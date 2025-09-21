@@ -1,31 +1,38 @@
 package br.com.fiap.sptrint1.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.websocket.OnError;
-
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_moto")
 public class Moto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "modelo")
     private String modelo;
+
+    @Column(name = "cor")
     private String cor;
+
+    @Column(name = "placa")
     private String placa;
+
+    @Column(name = "dataFabricacao")
     private LocalDate dataFabricacao;
+
     @ManyToOne
-    @JoinColumn(name = "patio_id")
+    @JoinColumn(name = "patio_id") // FK para tb_patio.id
     private Patio patio;
+
     @OneToOne
-    @JoinColumn(name = "chaveiro_id")
+    @JoinColumn(name = "chaveiro_id") // FK para tb_chaveiro.id
     private Chaveiro chaveiro;
 
-
-    public Moto(){}
+    public Moto() {}
 
     public Moto(Long id, String modelo, String cor, String placa, LocalDate dataFabricacao, Chaveiro chaveiro, Patio patio) {
         this.id = id;
@@ -35,13 +42,11 @@ public class Moto {
         this.dataFabricacao = dataFabricacao;
         this.chaveiro = chaveiro;
         this.patio = patio;
-
     }
 
     public Patio getPatio() {
         return patio;
     }
-
     public void setPatio(Patio patio) {
         this.patio = patio;
     }
@@ -49,7 +54,6 @@ public class Moto {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -57,7 +61,6 @@ public class Moto {
     public String getModelo() {
         return modelo;
     }
-
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
@@ -65,7 +68,6 @@ public class Moto {
     public String getCor() {
         return cor;
     }
-
     public void setCor(String cor) {
         this.cor = cor;
     }
@@ -73,7 +75,6 @@ public class Moto {
     public String getPlaca() {
         return placa;
     }
-
     public void setPlaca(String placa) {
         this.placa = placa;
     }
@@ -81,16 +82,13 @@ public class Moto {
     public LocalDate getDataFabricacao() {
         return dataFabricacao;
     }
-
     public void setDataFabricacao(LocalDate dataFabricacao) {
         this.dataFabricacao = dataFabricacao;
     }
 
-
     public Chaveiro getChaveiro() {
         return chaveiro;
     }
-
     public void setChaveiro(Chaveiro chaveiro) {
         this.chaveiro = chaveiro;
     }

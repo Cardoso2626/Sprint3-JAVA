@@ -1,21 +1,32 @@
 package br.com.fiap.sptrint1.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
 @Table(name = "tb_funcionario")
 public class Funcionario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "cpf")
     private String cpf;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "rg")
     private String rg;
+
+    @Column(name = "telefone")
     private String telefone;
+
     @ManyToMany(mappedBy = "funcionarios")
     private List<Patio> patios;
 
@@ -29,14 +40,12 @@ public class Funcionario {
         this.telefone = telefone;
         this.patios = patios;
     }
-    public Funcionario() {
 
-    }
+    public Funcionario() {}
 
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -44,7 +53,6 @@ public class Funcionario {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -52,7 +60,6 @@ public class Funcionario {
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -60,7 +67,6 @@ public class Funcionario {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -68,7 +74,6 @@ public class Funcionario {
     public String getRg() {
         return rg;
     }
-
     public void setRg(String rg) {
         this.rg = rg;
     }
@@ -76,7 +81,6 @@ public class Funcionario {
     public String getTelefone() {
         return telefone;
     }
-
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
@@ -84,7 +88,6 @@ public class Funcionario {
     public List<Patio> getPatios() {
         return patios;
     }
-
     public void setPatios(List<Patio> patios) {
         this.patios = patios;
     }

@@ -8,7 +8,9 @@ import jakarta.persistence.*;
 public class Chaveiro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "dispositivo")
     private String dispositivo;
     @OneToOne(mappedBy = "chaveiro")
     private Moto moto;

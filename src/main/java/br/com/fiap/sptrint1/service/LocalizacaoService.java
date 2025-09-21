@@ -4,17 +4,22 @@ import br.com.fiap.sptrint1.dto.LocalizacaoRequestDTO;
 import br.com.fiap.sptrint1.dto.LocalizacaoResponse;
 import br.com.fiap.sptrint1.model.Localizacao;
 import br.com.fiap.sptrint1.model.Patio;
+import br.com.fiap.sptrint1.repository.FuncionarioRepository;
 import br.com.fiap.sptrint1.repository.LocalizacaoRepository;
 import br.com.fiap.sptrint1.repository.PatioRepository;
 import org.springframework.stereotype.Service;
 
+
+
 @Service
 public class LocalizacaoService {
+    private final FuncionarioRepository funcionarioRepository;
     private LocalizacaoRepository localizacaoRepository;
     private PatioRepository patioRepository;
-    public LocalizacaoService(LocalizacaoRepository localizacaoRepository) {
+    public LocalizacaoService(LocalizacaoRepository localizacaoRepository, FuncionarioRepository funcionarioRepository) {
         this.localizacaoRepository = localizacaoRepository;
         this.patioRepository  = patioRepository;
+        this.funcionarioRepository = funcionarioRepository;
     }
 
 
@@ -78,5 +83,7 @@ public class LocalizacaoService {
                 loc.getPatio() != null ? loc.getPatio().getId() : null
         );
     }
+
+
 
 }

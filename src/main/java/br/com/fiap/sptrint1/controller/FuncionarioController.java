@@ -7,11 +7,14 @@ import br.com.fiap.sptrint1.model.Funcionario;
 import br.com.fiap.sptrint1.service.FuncionarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@Controller
 @RequestMapping("/funcionario")
 public class FuncionarioController {
 
@@ -45,5 +48,6 @@ public class FuncionarioController {
         FuncionarioResponseDTO funcionario = funcionarioService.atualiza(id, funcionarioDTO);
         return ResponseEntity.ok(funcionario);
     }
+
 
 }

@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Cadastro de funcionários</title>
 </head>
 <body>
-$END$
+    <div th:replace="~{fragments/header :: header}"></div>
+    <div>
+        <form method="post" th:action="@{cadastrar}" th:object="${funcionario}">
+            <div>
+                <label for="nome">Insira o nome: </label>
+                <input type="text" id="nome" th:field="*{nome}">
+            </div>
+            <div>
+                <label for="cpf">Insira o CPF:</label>
+                <input type="text" id="cpf" th:field="*{cpf}">
+            </div>
+            <div>
+                <label for="email">Insira o email: </label>
+                <input type="text" id="email" th:field="*{email}">
+            </div>
+            <div>
+                <label for="rg">Insira o RG: </label>
+                <input type="text" id="rg" th:field="*{rg}">
+            </div>
+            <div>
+                <label for="telefone">Insira o telefone: </label>
+                <input type="text" id="telefone" th:field="*{telefone}">
+            </div>
+            <div>
+                <button type="submit">
+                    Cadastrar
+                </button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 </html>

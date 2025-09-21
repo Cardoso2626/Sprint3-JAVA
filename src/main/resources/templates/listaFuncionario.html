@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista de funcionários da MotoBlu</title>
 </head>
 <body>
+    <div th:replace="~{fragments/header :: header}">
+
+    </div>
+    <div>
+        <h2>Lista de funcionários</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Email</td>
+                    <td>Telefone</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="funcionario : ${listarFuncionarios}">
+                    <td th:text="${funcionario.nome}"></td>
+                    <td th:text="${funcionario.email}"></td>
+                    <td th:text="${funcionario.telefone}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="~{fragments/footer :: footer}">
+
+    </div>
 
 </body>
 </html>

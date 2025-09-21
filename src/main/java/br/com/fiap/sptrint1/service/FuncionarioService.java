@@ -105,6 +105,10 @@ public class FuncionarioService {
 
     }
 
+    public List<Funcionario> listarFuncionarios(){
+        return funcionarioRepository.findAll();
+    }
+
 
 
 }

@@ -4,8 +4,10 @@ import br.com.fiap.sptrint1.dto.FuncionarioRequestDTO;
 import br.com.fiap.sptrint1.dto.FuncionarioResponseDTO;
 import br.com.fiap.sptrint1.model.Funcionario;
 import br.com.fiap.sptrint1.service.FuncionarioService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +33,11 @@ public class FuncionarioControllerTh {
         return "funcionarioCadastro";
     }
     @PostMapping("/cadastrar")
-    public String cadastrarLivro(FuncionarioRequestDTO funcionarioRequestDTO, Model model){
+    public String cadastrarLivro(@Valid FuncionarioRequestDTO funcionarioRequestDTO, BindingResult result, Model model){
+        if(result.hasErrors()){
+            model.addAttribute("funcionario",funcionarioRequestDTO);
+            return "funcionarioCadastro";
+        }
         FuncionarioResponseDTO funcionario = funcionarioService.save(funcionarioRequestDTO);
         return listarFuncionarios(model);
     }

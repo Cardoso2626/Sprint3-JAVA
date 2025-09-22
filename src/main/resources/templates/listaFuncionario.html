@@ -28,12 +28,27 @@
                     <td th:text="${funcionario.email}"></td>
                     <td th:text="${funcionario.telefone}"></td>
                     <td>
-                        
+                        <button th:attr="onclick=|showModal('infoModal' + ${funcionario.id})|" >
+                            Mais informações
+                        </button>
                     </td>
 
                 </tr>
             </tbody>
         </table>
+        <div th:each="funcionario: ${listarFuncionarios}" th:attr="id=${'infoModal' + funcionario.id}" style="display: none;">
+            <p>
+                ID: <span th:text="${funcionario.id}"></span><br/>
+                nome: <span th:text="${funcionario.nome}"></span><br/>
+                Cpf: <span th:text="${funcionario.cpf}"></span><br/>
+                Email: <span th:text="${funcionario.email}"></span><br/>
+                Rg: <span th:text="${funcionario.rg}"></span><br/>
+                Telefone: <span th:text="${funcionario.telefone}"></span><br/>
+            </p>
+            <button th:attr="onclick=|hideModal('infoModal' + ${funcionario.id})|">
+                Fechar
+            </button>
+        </div>
     </div>
     <div th:replace="~{fragments/footer :: footer}">
 

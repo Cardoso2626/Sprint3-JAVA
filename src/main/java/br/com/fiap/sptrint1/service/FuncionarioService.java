@@ -110,5 +110,20 @@ public class FuncionarioService {
     }
 
 
+    //para th
+    public Funcionario update (Funcionario funcionario) {
+        return funcionarioRepository.save(funcionario);
+    }
+
+    //para th
+    public Funcionario criar(Funcionario funcionario) {
+        return funcionarioRepository.save(funcionario);
+
+    }
+
+    public Funcionario readFuncionario(Long id) {
+        return funcionarioRepository.findById(id).orElse(null);
+    }
+
 
 }

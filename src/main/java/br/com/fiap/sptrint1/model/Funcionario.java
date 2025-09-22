@@ -1,6 +1,11 @@
 package br.com.fiap.sptrint1.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 @Entity
@@ -13,18 +18,37 @@ public class Funcionario {
     private Long id;
 
     @Column(name = "nome")
+    @NotBlank(message = "O nome é obrigatório")
+    @Size(min = 2, max = 100, message = "O nome deve ter entre 2 e 100 caracteres")
     private String nome;
 
     @Column(name = "cpf")
+    @NotBlank(message = "O CPF é obrigatório")
+    @Pattern(
+            regexp = "\\d{11}",
+            message = "O CPF deve conter exatamente 11 dígitos numéricos (somente números)"
+    )
     private String cpf;
 
     @Column(name = "email")
+    @NotBlank(message = "O email é obrigatório")
+    @Email(message = "O email deve ser válido")
     private String email;
 
     @Column(name = "rg")
+    @NotBlank(message = "O RG é obrigatório")
+    @Pattern(
+            regexp = "\\d{7,14}",
+            message = "O RG deve conter entre 7 e 14 dígitos numéricos (somente números)"
+    )
     private String rg;
 
     @Column(name = "telefone")
+    @NotBlank(message = "O telefone é obrigatório")
+    @Pattern(
+            regexp = "\\(?\\d{2}\\)?\\s?9\\d{4}-\\d{4}",
+            message = "O telefone deve estar no formato (XX) 9XXXX-XXXX"
+    )
     private String telefone;
 
     @ManyToMany(mappedBy = "funcionarios")

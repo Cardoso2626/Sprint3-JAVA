@@ -5,10 +5,12 @@ import br.com.fiap.sptrint1.dto.FuncionarioResponseDTO;
 import br.com.fiap.sptrint1.model.Funcionario;
 import br.com.fiap.sptrint1.service.FuncionarioService;
 import jakarta.validation.Valid;
+import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.MaxValidatorForBigDecimal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,9 +19,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/pageFuncionario")
 public class FuncionarioControllerTh {
+
     private FuncionarioService funcionarioService;
     public FuncionarioControllerTh(FuncionarioService funcionarioService) {
         this.funcionarioService = funcionarioService;
+
     }
     @GetMapping("/lista")
     public String listarFuncionarios(Model model){
@@ -33,12 +37,26 @@ public class FuncionarioControllerTh {
         return "funcionarioCadastro";
     }
     @PostMapping("/cadastrar")
-    public String cadastrarLivro(@Valid FuncionarioRequestDTO funcionarioRequestDTO, BindingResult result, Model model){
+    public String cadastrarLivro(@Valid Funcionario funcionario, BindingResult result, Model model){
         if(result.hasErrors()){
-            model.addAttribute("funcionario",funcionarioRequestDTO);
+            model.addAttribute("funcionario",funcionario);
             return "funcionarioCadastro";
         }
-        FuncionarioResponseDTO funcionario = funcionarioService.save(funcionarioRequestDTO);
+        if (funcionario.getId() == null){
+            funcionarioService.criar(funcionario);
+        }else{
+            funcionarioService.update(funcionario);
+        }
         return listarFuncionarios(model);
+    }
+
+    @GetMapping("/cadastro/{id}")
+    public String cadastroFuncionario(@PathVariable Long id, Model model){
+        Funcionario funcionario = funcionarioService.readFuncionario(id);
+        if(funcionario == null){
+            listarFuncionarios(model);
+        }
+        model.addAttribute("funcionario", funcionario);
+        return "funcionarioCadastro";
     }
 }

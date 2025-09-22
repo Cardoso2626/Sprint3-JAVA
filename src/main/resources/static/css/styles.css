@@ -14,6 +14,26 @@ body{
     font-family: Impact, Tahoma, sans-serif;
     color: #00FF4F;
 }
+.input{
+    border: none;
+    border-radius: 8px;
+    margin: 5px;
+    background-color: #eaeaea;
+}
+.input2{
+    margin-left: 20px
+}
+.input4{
+    margin-left: 25px
+}
+.input5{
+    margin-right: 25px
+}
+label{
+    font-family: "Dubai Medium", serif;
+    font-size: 20px;
+    color: #00FF4F;
+}
 
 .cont-principal{
     min-height: 80vh;
@@ -25,6 +45,7 @@ body{
 }
 .h2-forms{
     font-family: fantasy;
+    color: #eaeaea;
 }
 .footer{
     box-sizing: border-box;
@@ -32,10 +53,47 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 80px;
 }
 .error {
     color: red;
+    margin-top: 30px;
 }
 .p-foot{
+
+    font-family: "Dubai Medium", cursive;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+button{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 95px;
+    height: 40px;
+    margin-top: 30px;
+    transition: 0.3s ease-in-out;
+}
+button:hover{
+    background-color: white;
+    color: black;
+    box-shadow:
+            0 0 10px #00FF4F,
+            0 0 20px #00FF4F,
+            0 0 40px #00FF4F,
+            0 0 80px #00FF4F;
+}
+
+.item-form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+p{
+    padding-bottom: 50px;
     font-family: "Dubai Medium", cursive;
 }

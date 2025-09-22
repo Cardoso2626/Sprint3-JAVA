@@ -44,9 +44,7 @@
                 Email: <span th:text="${funcionario.email}"></span><br/>
                 Rg: <span th:text="${funcionario.rg}"></span><br/>
                 Telefone: <span th:text="${funcionario.telefone}"></span><br/>
-                <a th:href="@{/pageFuncionario/cadastro/{id}(id = ${funcionario.id})}">EDITAR</a>
-
-
+                <a th:href="@{/pageFuncionario/cadastro/{id}(id = ${funcionario.id})}">EDITAR</a> |  <a th:href="@{/pageFuncionario/deletar/{id}(id = ${funcionario.id})}">Deletar</a>
             </p>
             <button th:attr="onclick=|hideModal('infoModal' + ${funcionario.id})|">
                 Fechar

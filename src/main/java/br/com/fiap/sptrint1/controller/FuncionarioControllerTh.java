@@ -9,10 +9,7 @@ import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.Max
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -58,5 +55,10 @@ public class FuncionarioControllerTh {
         }
         model.addAttribute("funcionario", funcionario);
         return "funcionarioCadastro";
+    }
+    @GetMapping("/deletar/{id}")
+    public String deletarFuncionario(@PathVariable Long id, Model model){
+        funcionarioService.delete(id);
+        return listarFuncionarios(model);
     }
 }

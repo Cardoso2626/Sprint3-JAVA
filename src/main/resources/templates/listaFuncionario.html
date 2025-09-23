@@ -5,28 +5,28 @@
     <title>Lista de funcionários da MotoBlu</title>
     <link th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}" rel="stylesheet" />
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}" defer></script>
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link th:href="@{/css/stylesLista.css}" rel="stylesheet" />
     <script th:src="@{/js/script.js}" defer></script>
 </head>
 <body>
     <div th:replace="~{fragments/header :: header}">
 
     </div>
-    <div>
+    <div class="container-principal">
         <h2>Lista de funcionários</h2>
         <table>
             <thead>
-                <tr>
-                    <td>Nome</td>
-                    <td>Email</td>
-                    <td>Telefone</td>
+                <tr class="tr-principal">
+                    <td class="titulo-tbl">Nome</td>
+                    <td class="titulo-tbl">Email</td>
+                    <td class="titulo-tbl">Telefone</td>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="funcionario : ${listarFuncionarios}">
-                    <td th:text="${funcionario.nome}"></td>
-                    <td th:text="${funcionario.email}"></td>
-                    <td th:text="${funcionario.telefone}"></td>
+                <tr th:each="funcionario : ${listarFuncionarios}" class="tr-info">
+                    <td th:text="${funcionario.nome}" class="tdInfo"></td>
+                    <td th:text="${funcionario.email}" class="tdInfo"></td>
+                    <td th:text="${funcionario.telefone}" class="tdInfo"></td>
                     <td>
                         <button th:attr="onclick=|showModal('infoModal' + ${funcionario.id})|" >
                             Mais informações
@@ -36,17 +36,35 @@
                 </tr>
             </tbody>
         </table>
-        <div th:each="funcionario: ${listarFuncionarios}" th:attr="id=${'infoModal' + funcionario.id}" style="display: none;">
-            <p>
-                ID: <span th:text="${funcionario.id}"></span><br/>
-                nome: <span th:text="${funcionario.nome}"></span><br/>
-                Cpf: <span th:text="${funcionario.cpf}"></span><br/>
-                Email: <span th:text="${funcionario.email}"></span><br/>
-                Rg: <span th:text="${funcionario.rg}"></span><br/>
-                Telefone: <span th:text="${funcionario.telefone}"></span><br/>
-                <a th:href="@{/pageFuncionario/cadastro/{id}(id = ${funcionario.id})}">EDITAR</a> |  <a th:href="@{/pageFuncionario/deletar/{id}(id = ${funcionario.id})}">Deletar</a>
-            </p>
-            <button th:attr="onclick=|hideModal('infoModal' + ${funcionario.id})|">
+        <div th:each="funcionario: ${listarFuncionarios}" th:attr="id=${'infoModal' + funcionario.id}" style="display: none;" class="container-maisinfo">
+            <div class="item">
+                <h5>Id:</h5>
+                <p th:text="${funcionario.id}"></p>
+            </div>
+            <div class="item">
+                <h5>Nome:</h5>
+                <p th:text="${funcionario.nome}"></p>
+            </div>
+            <div class="item">
+                <h5>Cpf:</h5>
+                <p th:text="${funcionario.cpf}"></p>
+            </div>
+            <div class="item">
+                <h5>Email:</h5>
+                <p th:text="${funcionario.email}"></p>
+            </div>
+            <div class="item">
+                <h5>Rg:</h5>
+                <p th:text="${funcionario.rg}"></p>
+            </div>
+            <div class="item">
+                <h5>Telefone:</h5>
+                <p th:text="${funcionario.telefone}"></p>
+            </div>
+            <div class="item">
+                <a th:href="@{/pageFuncionario/cadastro/{id}(id = ${funcionario.id})}">EDITAR</a> |  <a th:href="@{/pageFuncionario/deletar/{id}(id = ${funcionario.id})}">DELETAR</a>
+            </div>
+            <button th:attr="onclick=|hideModal('infoModal' + ${funcionario.id})|" class="btn-fechar">
                 Fechar
             </button>
         </div>

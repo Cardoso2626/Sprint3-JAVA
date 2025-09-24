@@ -1,5 +1,6 @@
 package br.com.fiap.sptrint1.dto;
 
+import br.com.fiap.sptrint1.enums.Status;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -21,9 +22,20 @@ public class MotoRequestDTO {
     @NotNull(message = "A data de fabricação é obrigatória!")
     @PastOrPresent(message = "A data de fabricação não pode ser no futuro!")
     private LocalDate dataFabricacao;
+    private Status status;
 
     // Getters e setters
 
+    public MotoRequestDTO() {
+
+    }
+    public MotoRequestDTO(String modelo, String cor, String placa, Status status, LocalDate dataFabricacao) {
+        this.modelo = modelo;
+        this.cor = cor;
+        this.placa = placa;
+        this.status = status;
+        this.dataFabricacao = dataFabricacao;
+    }
     public String getModelo() {
         return modelo;
     }
@@ -56,4 +68,12 @@ public class MotoRequestDTO {
         this.dataFabricacao = dataFabricacao;
     }
 
+    public Status getStatus() {
+        return status;
+
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

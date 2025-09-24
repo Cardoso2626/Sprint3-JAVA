@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Scanner;
 
 @Service
 public class MotoService {
@@ -27,11 +28,13 @@ public class MotoService {
     private final PatioRepository patioRepository;
     private final ChaveiroRepository chaveiroRepository;
 
+
     public MotoService(MotoRepository motoRepository, PatioRepository patioRepository, ChaveiroRepository chaveiroRepository) {
         this.motoRepository = motoRepository;
         this.patioRepository = patioRepository;
         this.chaveiroRepository = chaveiroRepository;
     }
+
 
     // Listando motos por pageable
     public Page<MotoResponseDTO> buscarPorPlacaComDTO(String placa, Pageable pageable) {
@@ -140,6 +143,35 @@ public class MotoService {
                 moto.getChaveiro() != null ? moto.getPatio().getId() : null
         );
 
+    }
+
+    //FLUXO 1
+
+    public void analisarStatusMoto(MotoRequestDTO moto) {
+        Scanner tec = new Scanner(System.in);
+        System.out.println("A moto está em boas condições? (S/N) ");
+        String resposta = tec.nextLine();
+        if(resposta.equals("S")){
+            moto.setStatus(Status.DISPONIVEL);
+        }else if (resposta.equals("N")){
+            moto.setStatus(Status.NAO_DISPONIVEL);
+        }
+        System.out.println("A moto " + moto.getPlaca() + "não está mais disponível!");
+
+    }
+
+    //FLUXO 2
+
+    public void disponibilizarMoto(MotoRequestDTO moto) {
+        Scanner tec = new Scanner(System.in);
+        System.out.println("Nos fale o relatório da melhoria da moto, caso não tenham sido feitas melhorias, difite 'S' (SAIR):  ");
+        String resposta = tec.nextLine();
+        if(resposta.equals("S")){
+            System.out.println("Volte quando a moto puder rodar");
+        }else{
+            moto.setStatus(Status.DISPONIVEL);
+        }
+        System.out.println("A moto " + moto.getPlaca() + " agora está disponível!");
     }
 
 }

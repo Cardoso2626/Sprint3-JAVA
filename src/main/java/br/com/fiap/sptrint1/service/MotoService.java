@@ -3,6 +3,7 @@ package br.com.fiap.sptrint1.service;
 import br.com.fiap.sptrint1.dto.MotoRequest;
 import br.com.fiap.sptrint1.dto.MotoRequestDTO;
 import br.com.fiap.sptrint1.dto.MotoResponseDTO;
+import br.com.fiap.sptrint1.enums.Status;
 import br.com.fiap.sptrint1.mapper.MotoMapper;
 import br.com.fiap.sptrint1.model.Chaveiro;
 import br.com.fiap.sptrint1.model.Moto;
@@ -47,6 +48,7 @@ public class MotoService {
         moto.setCor(motoDTO.getCor());
         moto.setPlaca(motoDTO.getPlaca());
         moto.setDataFabricacao(motoDTO.getDataFabricacao());
+        moto.setStatus(Status.DISPONIVEL);
         moto.setChaveiro(null);
         moto.setPatio(null);
 
@@ -58,8 +60,9 @@ public class MotoService {
             moto.getCor(),
             moto.getPlaca(),
             moto.getDataFabricacao(),
+                moto.getStatus(),
             null,
-            null
+                null
         );
 
     }
@@ -80,6 +83,7 @@ public class MotoService {
                 moto.getCor(),
                 moto.getPlaca(),
                 moto.getDataFabricacao(),
+                moto.getStatus(),
                 moto.getPatio() != null ? moto.getPatio().getId() : null,
                 moto.getChaveiro() != null ? moto.getChaveiro().getId() : null
         );
@@ -94,6 +98,7 @@ public class MotoService {
                 moto.getCor(),
                 moto.getPlaca(),
                 moto.getDataFabricacao(),
+                moto.getStatus(),
                 moto.getPatio() != null ? moto.getPatio().getId() : null,
                 moto.getChaveiro() != null ? moto.getChaveiro().getId() : null
         );
@@ -107,6 +112,7 @@ public class MotoService {
         moto.setPlaca(motoDto.placa());
         moto.setDataFabricacao(motoDto.dataFabricacao());
         moto.setModelo(motoDto.modelo());
+        moto.setStatus(motoDto.status());
 
         if(motoDto.patioId() != null){
             Patio patio = patioRepository.findById(motoDto.patioId()).orElseThrow(() -> new RuntimeException("Patio não encontrado"));
@@ -129,6 +135,7 @@ public class MotoService {
                 moto.getCor(),
                 moto.getPlaca(),
                 moto.getDataFabricacao(),
+                moto.getStatus(),
                 moto.getPatio() != null ? moto.getPatio().getId() : null,
                 moto.getChaveiro() != null ? moto.getPatio().getId() : null
         );

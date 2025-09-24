@@ -1,5 +1,6 @@
 package br.com.fiap.sptrint1.model;
 
+import br.com.fiap.sptrint1.enums.Status;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -24,6 +25,11 @@ public class Moto {
     @Column(name = "dataFabricacao")
     private LocalDate dataFabricacao;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
+
     @ManyToOne
     @JoinColumn(name = "patio_id") // FK para tb_patio.id
     private Patio patio;
@@ -32,14 +38,17 @@ public class Moto {
     @JoinColumn(name = "chaveiro_id") // FK para tb_chaveiro.id
     private Chaveiro chaveiro;
 
+
+
     public Moto() {}
 
-    public Moto(Long id, String modelo, String cor, String placa, LocalDate dataFabricacao, Chaveiro chaveiro, Patio patio) {
+    public Moto(Long id, String modelo, String cor, String placa, LocalDate dataFabricacao, Status status, Chaveiro chaveiro, Patio patio) {
         this.id = id;
         this.modelo = modelo;
         this.cor = cor;
         this.placa = placa;
         this.dataFabricacao = dataFabricacao;
+        this.status = status;
         this.chaveiro = chaveiro;
         this.patio = patio;
     }
@@ -91,5 +100,13 @@ public class Moto {
     }
     public void setChaveiro(Chaveiro chaveiro) {
         this.chaveiro = chaveiro;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

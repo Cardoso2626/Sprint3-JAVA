@@ -22,6 +22,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.flywaydb:flyway-core'
     implementation 'com.oracle.database.jdbc:ojdbc11:23.3.0.23.09'
     implementation 'org.webjars:bootstrap:5.3.3'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

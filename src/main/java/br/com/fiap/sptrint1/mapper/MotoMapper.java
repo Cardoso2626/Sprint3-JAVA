@@ -11,6 +11,7 @@ public class MotoMapper {
                 moto.getCor(),
                 moto.getPlaca(),
                 moto.getDataFabricacao(),
+                moto.getStatus(),
                 moto.getPatio() != null ? moto.getPatio().getId() : null,
                 moto.getChaveiro() != null ? moto.getChaveiro().getId() : null
         );

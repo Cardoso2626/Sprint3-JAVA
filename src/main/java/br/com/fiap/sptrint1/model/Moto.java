@@ -22,7 +22,7 @@ public class Moto {
     @Column(name = "placa")
     private String placa;
 
-    @Column(name = "dataFabricacao")
+    @Column(name = "DATAFABRICACAO")
     private LocalDate dataFabricacao;
 
     @Enumerated(EnumType.STRING)

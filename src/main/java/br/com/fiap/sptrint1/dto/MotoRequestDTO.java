@@ -1,6 +1,7 @@
 package br.com.fiap.sptrint1.dto;
 
 import br.com.fiap.sptrint1.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class MotoRequestDTO {
     private String placa;
     @NotNull(message = "A data de fabricação é obrigatória!")
     @PastOrPresent(message = "A data de fabricação não pode ser no futuro!")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dataFabricacao;
     private Status status;
 

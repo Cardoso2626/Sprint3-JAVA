@@ -1,4 +1,4 @@
-# 🏍️ Sprint 1 - java 
+# 🏍️ Sprint 3 - java 
 
 ## 📌 Descrição do Projeto
 
@@ -12,11 +12,15 @@ Este projeto tem como objetivo o desenvolvimento de uma API RESTful em **Java co
 
   ## FUNCIONALIDADES
 
-- Banco de dados H2
+- Banco de dados Oracle
 - Spring web
 - Spring boot
 - Sptring data JPA
 - Gradle
+- Flyway (migrations)
+- Spring Security (OAuth 2)
+- Thymeleaf (MVC)
+
 
  Para as próximas entregas, planejamos conectar uma API de bluetooth, para conseguirmos linka-las com as motos, que é a ideia do nosso projeto. Basicamente, o funcioanrio conseguiria localizar sua moto através de conexões por bluetooth, que a partir dai, mostraria a localização da moto no galpão. Obviamente, isso ainda não foi implementado mas está sendo planejado pelos desenvolvedores do projeto.
 -------
@@ -35,7 +39,12 @@ Este projeto tem como objetivo o desenvolvimento de uma API RESTful em **Java co
   - DELETE: você pode deletar suas etidade pelo id, e ficaria assim  http://localhost:8080/(entidadedarequisição)/(idDaEntidade),
   - Além disso tudo você pode puxar por páginas (get), seguindo o caminho que também está no controller, temos 2 tipos, o pageable de Moto e de Chaveiro.
        - Ex de Chaveiro: http://localhost:8080/chaveiro/por-dispositivo?dispositivo=tag123&page=0&size=5&sort=dispositivo,asc
-       - Ex de Moto: http://localhost:8080/moto/por-placa?placa=ABC1234&page=0&size=5&sort=modelo,asc    
+       - Ex de Moto: http://localhost:8080/moto/por-placa?placa=ABC1234&page=0&size=5&sort=modelo,asc
+
+    COMO RODAR O THYMELEAF
+- Para rodar o thymeleaf é necessário entrar na rota http://localhost:8080/pageFuncionario/cadastro, a partir daí ele abrirá um formulário de autenticação. POR FAVOR, faça a autenticação clicando no botão do github.
+  Mas para autenticar com o git, você precisa ir em "settings" no seu perfil, a partir daí, você cria um OAuth app, e após preencher as informações e criar o app, o git vai gerar um client id e você poderá gerar um client token. Após isso, salve essas informações e va no projeto que você clonou, e siga os seguintes passos:
+  - Clique no icone Sprint1JavaApplication 
 ---
 
 ## 👨‍💻 Integrantes

@@ -2,13 +2,12 @@ package br.com.fiap.sptrint1.controller;
 
 import br.com.fiap.sptrint1.dto.PatioRequest;
 import br.com.fiap.sptrint1.dto.PatioResponseDTO;
-import br.com.fiap.sptrint1.model.Patio;
 import br.com.fiap.sptrint1.service.PatioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/patio")

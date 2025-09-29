@@ -3,10 +3,7 @@ package br.com.fiap.sptrint1.controller;
 import br.com.fiap.sptrint1.dto.MotoRequest;
 import br.com.fiap.sptrint1.dto.MotoRequestDTO;
 import br.com.fiap.sptrint1.dto.MotoResponseDTO;
-import br.com.fiap.sptrint1.mapper.MotoMapper;
-import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.service.MotoService;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 
 @RestController

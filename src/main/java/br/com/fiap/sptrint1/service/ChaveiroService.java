@@ -7,7 +7,6 @@ import br.com.fiap.sptrint1.model.Chaveiro;
 import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.repository.ChaveiroRepository;
 import br.com.fiap.sptrint1.repository.MotoRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

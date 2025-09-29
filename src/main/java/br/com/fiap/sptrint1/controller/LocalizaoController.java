@@ -2,10 +2,7 @@ package br.com.fiap.sptrint1.controller;
 
 import br.com.fiap.sptrint1.dto.LocalizacaoRequestDTO;
 import br.com.fiap.sptrint1.dto.LocalizacaoResponse;
-import br.com.fiap.sptrint1.dto.MotoResponseDTO;
-import br.com.fiap.sptrint1.model.Localizacao;
 import br.com.fiap.sptrint1.service.LocalizacaoService;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

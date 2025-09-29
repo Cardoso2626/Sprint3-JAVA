@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // 🔓 Configuração para APIs REST (sem login)
     @Bean
     @Order(1)
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
@@ -30,7 +29,7 @@ public class SecurityConfig {
                 .build();
     }
 
-    // 🔒 Configuração para Thymeleaf (GitHub + tela de login do Spring)
+
     @Bean
     @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{

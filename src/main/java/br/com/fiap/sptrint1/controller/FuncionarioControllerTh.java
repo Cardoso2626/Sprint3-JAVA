@@ -1,11 +1,8 @@
 package br.com.fiap.sptrint1.controller;
 
-import br.com.fiap.sptrint1.dto.FuncionarioRequestDTO;
-import br.com.fiap.sptrint1.dto.FuncionarioResponseDTO;
 import br.com.fiap.sptrint1.model.Funcionario;
 import br.com.fiap.sptrint1.service.FuncionarioService;
 import jakarta.validation.Valid;
-import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.MaxValidatorForBigDecimal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

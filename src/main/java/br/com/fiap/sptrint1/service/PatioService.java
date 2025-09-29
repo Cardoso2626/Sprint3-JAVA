@@ -5,7 +5,6 @@ import br.com.fiap.sptrint1.dto.PatioResponseDTO;
 import br.com.fiap.sptrint1.model.Funcionario;
 import br.com.fiap.sptrint1.model.Moto;
 import br.com.fiap.sptrint1.model.Patio;
-import br.com.fiap.sptrint1.repository.ChaveiroRepository;
 import br.com.fiap.sptrint1.repository.FuncionarioRepository;
 import br.com.fiap.sptrint1.repository.MotoRepository;
 import br.com.fiap.sptrint1.repository.PatioRepository;

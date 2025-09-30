@@ -27,9 +27,9 @@ public class LocalizacaoService {
         Localizacao loc = new Localizacao();
 
         loc.setEstado(localizaoRequest.estado());
-        loc.setEstado(localizaoRequest.cidade());
-        loc.setEstado(localizaoRequest.rua());
-        loc.setEstado(localizaoRequest.estado());
+        loc.setCidade(localizaoRequest.cidade());
+        loc.setRua(localizaoRequest.rua());
+        loc.setNumero(localizaoRequest.numero());
 
         loc = localizacaoRepository.save(loc);
 

@@ -84,6 +84,7 @@ public class FuncionarioService {
         funcionario.setTelefone(funcionarioDTO.telefone());
         funcionario.setRg(funcionarioDTO.rg());
         funcionario.setCpf(funcionarioDTO.cpf());
+        Patio patio = new Patio();
 
         if(funcionarioDTO.idPatios() != null) {
             List<Patio> patioIds = patioRepository.findAllById(funcionarioDTO.idPatios());

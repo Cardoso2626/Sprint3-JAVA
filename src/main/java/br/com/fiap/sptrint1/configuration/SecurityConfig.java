@@ -4,26 +4,36 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * Security chain para os endpoints da API
+     * Não exige autenticação, desabilita OAuth2 e form login
+     */
     @Bean
     @Order(1)
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
-        return http
-                .securityMatcher("/moto/**", "/chaveiro/**", "/localizacao/**", "/funcionario/**", "/patio/**", "/moto/{id}")
+        http
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        // 2. PERMITE explicitamente o método OPTIONS para o pre-flight do CORS
+                        // Permite preflight CORS
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        // Permite todos os endpoints da API
+                        .requestMatchers("/moto/**").permitAll()
+                        .requestMatchers("/chaveiro/**").permitAll()
+                        .requestMatchers("/localizacao/**").permitAll()
+                        .requestMatchers("/funcionario/**").permitAll()
+                        .requestMatchers("/patio/**").permitAll()
+                        // Qualquer outro request da API
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form.disable())
@@ -31,24 +41,33 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((req, res, e) ->
                                 res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))
-                )
-                .build();
+                );
+
+        return http.build();
     }
 
-
+    /**
+     * Security chain para páginas web
+     * Mantém OAuth2 e form login
+     */
     @Bean
     @Order(2)
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        // Esta é a cadeia de segurança para Web/Browser, não precisa de alterações CORS
-        return httpSecurity.authorizeHttpRequests(
-                        authorizeRequests ->
-                                authorizeRequests
-                                        .requestMatchers("/").permitAll()
-                                        .requestMatchers("/pageFuncionario/lista").permitAll()
-                                        .anyRequest().authenticated()
-                ).oauth2Login(oauth2 ->
-                        oauth2.defaultSuccessUrl("/pageFuncionario/lista"))
+    public SecurityFilterChain webSecurity(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        // Ignora endpoints da API
+                        .requestMatchers("/moto/**", "/chaveiro/**", "/localizacao/**", "/funcionario/**", "/patio/**").permitAll()
+                        // Páginas web abertas
+                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/pageFuncionario/lista").permitAll()
+                        // Todas as outras páginas exigem autenticação
+                        .anyRequest().authenticated()
+                )
+                .oauth2Login(oauth2 -> oauth2.defaultSuccessUrl("/pageFuncionario/lista"))
                 .formLogin(Customizer.withDefaults())
-                .build();
+                .csrf(csrf -> csrf.disable()) // opcional, dependendo do uso de formulários
+                .cors(Customizer.withDefaults());
+
+        return http.build();
     }
 }

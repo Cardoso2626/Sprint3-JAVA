@@ -8,6 +8,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -19,7 +20,12 @@ public class SecurityConfig {
         return http
                 .securityMatcher("/moto/**", "/chaveiro/**", "/localizacao/**", "/funcionario/**", "/patio/**", "/moto/{id}")
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        // 2. PERMITE explicitamente o método OPTIONS para o pre-flight do CORS
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .anyRequest().permitAll()
+                )
                 .formLogin(form -> form.disable())
                 .oauth2Login(oauth -> oauth.disable())
                 .exceptionHandling(ex -> ex
@@ -33,6 +39,7 @@ public class SecurityConfig {
     @Bean
     @Order(2)
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        // Esta é a cadeia de segurança para Web/Browser, não precisa de alterações CORS
         return httpSecurity.authorizeHttpRequests(
                         authorizeRequests ->
                                 authorizeRequests

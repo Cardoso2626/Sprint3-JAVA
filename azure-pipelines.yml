@@ -1,0 +1,33 @@
+trigger:
+  branches:
+    include:
+      - main
+      - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  appName: 'motoblu556496'
+  acrName: 'acrfiap556496'
+  acrLoginServer: 'acrfiap556496.azurecr.io'
+  imageRepository: 'fiap/$(appName)'
+  dockerfilePath: '**/Dockerfile'
+  tag: '$(Build.BuildNumber)'
+
+stages:
+- stage: Build
+  displayName: 'Build and push image'
+  jobs:
+  - job: BuildAndPush
+    displayName: 'Docker build and push to ACR'
+    steps:
+    - task: Docker@2
+      displayName: 'Build and push image'
+      inputs:
+        containerRegistry: 'SC-FIAP-556496'
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '$(dockerfilePath)'
+        tags: |
+          $(tag)

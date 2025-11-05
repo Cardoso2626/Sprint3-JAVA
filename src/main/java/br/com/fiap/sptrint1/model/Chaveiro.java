@@ -12,18 +12,40 @@ public class Chaveiro {
     private Long id;
     @Column(name = "dispositivo")
     private String dispositivo;
+    @Column(name = "pos_x")
+    private Double posX;
+    @Column(name = "pos_y")
+    private Double posY;
     @OneToOne(mappedBy = "chaveiro")
     private Moto moto;
 
 
 
-    public Chaveiro(Long id, String dispositivo, Moto moto) {
+    public Chaveiro(Long id, String dispositivo, Double posX, Double posY,Moto moto) {
         this.id = id;
         this.dispositivo = dispositivo;
+        this.posX = posX;
+        this.posY = posY;
         this.moto = moto;
     }
+
     public Chaveiro() {}
 
+    public Double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(Double posX) {
+        this.posX = posX;
+    }
+
+    public Double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(Double posY) {
+        this.posY = posY;
+    }
 
     public Moto getMoto() {
         return moto;

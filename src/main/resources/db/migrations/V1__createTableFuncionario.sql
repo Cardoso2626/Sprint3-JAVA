@@ -9,7 +9,9 @@ CREATE TABLE tb_funcionario (
 
 CREATE TABLE tb_chaveiro (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    dispositivo VARCHAR(100)
+    dispositivo VARCHAR(100),
+    pos_x NUMBER(10, 2),
+    pos_y NUMBER(10, 2)
 );
 CREATE TABLE tb_patio (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY

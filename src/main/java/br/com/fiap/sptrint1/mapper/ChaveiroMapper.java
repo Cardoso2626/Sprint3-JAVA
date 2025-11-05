@@ -9,6 +9,8 @@ public class ChaveiroMapper {
         return new ChaveiroResponseDTO(
                 chaveiro.getId(),
                 chaveiro.getDispositivo(),
+                chaveiro.getPosX(),
+                chaveiro.getPosY(),
                 chaveiro.getMoto() != null ? chaveiro.getMoto().getId() : null
         );
     }

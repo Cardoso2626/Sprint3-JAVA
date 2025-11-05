@@ -38,6 +38,8 @@ public class ChaveiroService {
     public ChaveiroResponseDTO cadastrar(ChaveiroRequest request) {
         Chaveiro chaveiro = new Chaveiro();
         chaveiro.setDispositivo(request.dispositivo());
+        chaveiro.setPosX(request.posX());
+        chaveiro.setPosY(request.posY());
 
         if (request.motoId() != null) {
             Moto moto = motoRepository.findById(request.motoId())
@@ -52,6 +54,8 @@ public class ChaveiroService {
         return new ChaveiroResponseDTO(
                 chaveiro.getId(),
                 chaveiro.getDispositivo(),
+                chaveiro.getPosX(),
+                chaveiro.getPosY(),
                 motoId
         );
     }
@@ -69,6 +73,8 @@ public class ChaveiroService {
         return new ChaveiroResponseDTO(
                 chaveiro.getId(),
                 chaveiro.getDispositivo(),
+                chaveiro.getPosX(),
+                chaveiro.getPosY(),
                 chaveiro.getMoto() != null  ? chaveiro.getMoto().getId() : null
         );
     }
@@ -80,6 +86,8 @@ public class ChaveiroService {
         return new ChaveiroResponseDTO(
                 chaveiro.getId(),
                 chaveiro.getDispositivo(),
+                chaveiro.getPosX(),
+                chaveiro.getPosY(),
                 chaveiro.getMoto() != null ? chaveiro.getMoto().getId() : null
         );
     }
@@ -91,6 +99,8 @@ public class ChaveiroService {
                 .orElseThrow(() -> new RuntimeException("Chaveiro não encontrado"));
 
         chaveiro.setDispositivo(request.dispositivo());
+        chaveiro.setPosX(request.posX());
+        chaveiro.setPosY(request.posY());
 
         if (request.motoId() != null) {
             Moto moto = motoRepository.findById(request.motoId())
@@ -107,6 +117,8 @@ public class ChaveiroService {
         return new ChaveiroResponseDTO(
                 chaveiro.getId(),
                 chaveiro.getDispositivo(),
+                chaveiro.getPosX(),
+                chaveiro.getPosY(),
                 motoId
         );
     }

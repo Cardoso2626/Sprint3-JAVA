@@ -20,11 +20,12 @@ Este projeto tem como objetivo o desenvolvimento de uma API RESTful em **Java co
 - Flyway (migrations)
 - Spring Security (OAuth 2)
 - Thymeleaf (MVC)
+- Deploy (render)
+  
+LINK DO DEPLOY: https://sprint3-java-1.onrender.com (cole no navegador)
 
 
- Para as próximas entregas, planejamos conectar uma API de bluetooth, para conseguirmos linka-las com as motos, que é a ideia do nosso projeto. Basicamente, o funcioanrio conseguiria localizar sua moto através de conexões por bluetooth, que a partir dai, mostraria a localização da moto no galpão. Obviamente, isso ainda não foi implementado mas está sendo planejado pelos desenvolvedores do projeto.
--------
-#Como rodar o projeto
+#Como rodar o projeto (localhost e com API no render)
 
 (CRIE PRIMEIRAMENTE O OBJETO DA CLASSE MOTO, POIS NÃO É NECESSÁRIO UMA PASSAGEM DE ID PARA OS RELACIONAMENTOS QUE ESTA CLASSE OBTEM)
 (LEMBRANDO QUE PARA CADA CLASSE, NÃO É NECESSÁRIO PASSAR SEU ID, APENAS NOS RELACIONAMENTOS. O ID DE CADA CLASSE É CRIADO AUTOMATICAMENTE)
@@ -51,6 +52,9 @@ Este projeto tem como objetivo o desenvolvimento de uma API RESTful em **Java co
        - Ex de Chaveiro: http://localhost:8080/chaveiro/por-dispositivo?dispositivo=tag123&page=0&size=5&sort=dispositivo,asc
        - Ex de Moto: http://localhost:8080/moto/por-placa?placa=ABC1234&page=0&size=5&sort=modelo,asc
 
+
+#NO RENDER
+- Você pode mandar requisições a partir do postman também, do mesmo jeito que você manda pelo localhost, mas ao invés de ser http://localhost:8080/(model) vai ser https://sprint3-java-1.onrender.com/(model)
 ---
 
 ## 👨‍💻 Integrantes
